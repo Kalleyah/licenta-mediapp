@@ -2,8 +2,8 @@
  <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      Anything you want
+      Bianca Erdeli
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>MediaApp &copy; 2018.</strong> Toate drepturile rezervate.
   </footer>

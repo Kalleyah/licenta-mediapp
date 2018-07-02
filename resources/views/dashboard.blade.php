@@ -11,7 +11,13 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Progr/Consult</span>
-              <span class="info-box-number">{{$rezervmonth/$consultsmonth}}<small>%</small></span>
+              <span class="info-box-number">
+              @if($consultsmonth > 0)
+                {{$rezervmonth/$consultsmonth}}
+              @else
+                Nu sunt date
+              @endif
+                <small>%</small></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -110,7 +116,7 @@
        <!-- Rezervation LIST -->
        <div class="box box-danger">
             <div class="box-header with-border">
-              <h3 class="box-title">Boli frecvente luna curtenta </h3>
+              <h3 class="box-title">Boli frecvente (ultimele 30 zile) </h3>
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>

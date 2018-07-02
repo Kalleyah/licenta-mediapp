@@ -21,4 +21,8 @@ class Programari extends Model
     {
         return $this->belongsTo('App\Pacient', 'pacient_id');
     }
+    public function medic()
+    {
+        return $this->belongsTo('App\User', 'medic');
+    }
 }

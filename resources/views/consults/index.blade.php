@@ -8,7 +8,7 @@
         <div class="box-body">
             <div class="row form-group">
                 <div class="col-lg-12">
-                <a href="{{ route('consults.add') }}" class="edit-modal btn btn-info">
+                <a href="{{ route('consults.add') }}" class="btn btn-sm btn-success">
                     <span class="glyphicon glyphicon-plus"></span> Creaza consultatie
                 </a>
                 </div>
@@ -26,24 +26,26 @@
                                 <th class="text-center">Cod boala</th>
                                 <th class="text-center">Tratament</th>
                                 <th class="text-center">Concediu medical</th>
+                                <th class="text-center">Medicul consultant</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach ($consults->all() as $consult)
                             <tr class="item{{$consult->id}}">
                                 <td>{{$consult->id}}</td>
-                                <td>{{$consult->pacient_id}}</td>
+                                <td>{{$consult->firstname}} {{$consult->lastname}} <br/> {{$consult->cnp}}</td>
                                 <td>{{$consult->consultdate}}</td>
                                 <td>{{$consult->simpthoms}}</td>
                                 <td>{{$consult->diagnostics}}</td>
                                 <td>{{$consult->codboala}}</td>
                                 <td>{{$consult->threatment}}</td>
                                 <td>{{$consult->medicalbreak}}</td>
+                                <td>{{$consult->name}}</td>
                                 <td>
                                 <a href="{{ route('consults.show', ['id' => $consult->id]) }}" class="btn btn-sm btn-success">
                                     <span class="glyphicon glyphicon-edit"></span> Vizualizare
                                 </a>
-                                <a href="{{ route('consults.edit', ['id' => $consult->id]) }}" class="btn btn-sm btn-sm btn-info">
+                                <a href="{{ route('consults.edit', ['id' => $consult->id, 'pacientid' => $consult->pacient_id, 'medic' => $consult->medic]) }}" class="btn btn-sm btn-sm btn-info">
                                     <span class="glyphicon glyphicon-edit"></span> Editare
                                 </a>
                                 <a onclick="return confirm('Sigur vreti sa stergeti consultatia?')" href="{{ route('consults.destroy', ['id' => $consult->id]) }}" class="btn btn-sm btn-danger">

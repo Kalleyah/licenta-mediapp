@@ -85,16 +85,22 @@ Route::get('users/{id}', array('as' => 'users.show', 'uses' => 'UserController@s
 
 #reports
 Route::get('/raports/concedii', array('as' => 'raports.concedii', 'uses'=>'RaportsController@indexconcedii'));
+Route::post('/raports/concedii', array('as' => 'raports.concedii', 'uses'=>'RaportsController@indexconcedii'));
 Route::get('/raports/boli', array('as' => 'raports.boli', 'uses'=>'RaportsController@indexboli'));
+Route::post('/raports/boli', array('as' => 'raports.boli', 'uses'=>'RaportsController@indexboli'));
 Route::get('/raports/pacienti', array('as' => 'raports.pacienti', 'uses'=>'RaportsController@indexpacient'));
+Route::post('/raports/pacienti', array('as' => 'raports.pacienti', 'uses'=>'RaportsController@indexpacient'));
 
+Route::post('/raports/concedii/pdf', array('as' => 'raports.concedii.pdf', 'uses'=>'RaportsController@displayReport'));
+Route::post('/raports/boli/pdf', array('as' => 'raports.boli.pdf', 'uses'=>'RaportsController@displayReport1'));
 
 #ws
 Route::get('/autocomplete', array('as' => 'autocomplete', 'uses'=>'PacientController@autocomplete'));
 Route::get('/eventscomplete', array('as' => 'eventscomplete', 'uses'=>'ProgramariController@eventscomplete'));
 Route::get('/autousername/{pacientid}', array('as' => 'autousername', 'uses'=>'PacientController@autousername'));
 Route::get('/concediiconsult', array('as' => 'eventscomplete', 'uses'=>'ConcediimedicaleController@ws_concediiconsult'));
-
+Route::get('/doctorslist', array('as' => 'doctorslist', 'uses'=>'UserController@autocomplete'));
+Route::get('/autodoctorname/{medicid}', array('as' => 'autodoctorname', 'uses'=>'UserController@autousername'));
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 #test

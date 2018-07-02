@@ -9,7 +9,7 @@
         <div class="box-body">
             <div class="row form-group">
                 <div class="col-lg-12">
-                <a href="{{ route('concedii.add') }}" class="btn btn-info">
+                <a href="{{ route('concedii.add') }}" class="btn btn-sm btn-success">
                     <span class="glyphicon glyphicon-plus"></span> Introduce concediu
                 </a>
                 </div>
@@ -26,7 +26,8 @@
                                 <th class="text-center">Pana la</th>
                                 <th class="text-center">Nr. de Zile</th>
                                 <th class="text-center">Eliberat la</th>
-                                <th class="text-center">ala</th>
+                                <th class="text-center">Medicul consultant</th>
+                                <th class="text-center"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,6 +40,7 @@
                                 <td>{{$concediu->enddate}}</td>
                                 <td>{{$concediu->duration}}</td>
                                 <td>{{$concediu->created_at}}</td>
+                                <td>{{$concediu->name}}</td>
                                 <td>
                                 <a href="{{ route('concedii.show', ['id' => $concediu->id]) }}" 
                                 class="btn btn-sm btn-success">

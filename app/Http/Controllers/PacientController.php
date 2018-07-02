@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pacient;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Session;
@@ -68,7 +69,26 @@ class PacientController extends Controller
         $reservations = $pacient->reservations()->orderBy('startdate', 'desc')->first();
         $consults = $pacient->consults()->orderBy('consultdate', 'desc')->get();
         $concedii = $pacient->concedii()->orderBy('startdate', 'desc')->get();
-        
+        foreach($consults as $c)
+        {
+            if($c->medic>0)
+            {
+                $c->medicuser = User::find($c->medic)->name;
+            }
+            else{
+                    $c->medicuser = 'NA';
+                }
+        }
+        foreach($concedii as $co)
+        {
+            if($co->medic>0)
+            {
+                $co->medicuser = User::find($co->medic)->name;
+            }
+            else{
+                    $co->medicuser = 'NA';
+                }
+        }
         #$pacient = Pacient::where('id', $id)->first();
         
         return view('pacients.show', 

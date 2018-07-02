@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Concediimedicale;
 use App\Consults;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -20,7 +21,8 @@ class ConcediimedicaleController extends Controller
         $itemsPerPage = 20;
         $concedii = DB::table('concediimedicales')
             ->leftJoin('pacients', 'concediimedicales.pacient_id', '=', 'pacients.id')
-            ->select('concediimedicales.*', 'pacients.firstname', 'pacients.lastname', 'pacients.cnp')
+            ->leftJoin('users', 'concediimedicales.medic', '=', 'users.id')
+            ->select('concediimedicales.*', 'pacients.firstname', 'pacients.lastname', 'pacients.cnp', 'users.name')
             ->orderBy('concediimedicales.created_at', 'desc')
             ->paginate(20);
             //->paginate($itemsPerPage)

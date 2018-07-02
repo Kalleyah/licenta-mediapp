@@ -99,7 +99,7 @@
                   <span class="username">
                     <a href="{{ route('consults.show', ['id'=> $consult->id])}}">{{$consult->diagnostics}} {{$consult->codboala}} </a>
                   </span>
-              <span class="description">{{$consult->consultdate}}</span>
+              <span class="description">{{$consult->consultdate}} ,  Medic: {{$consult->medicuser}}</span>
             </div>
             <!-- /.user-block -->
             <p>
@@ -128,6 +128,7 @@
                       <th>Serie</th>
                       <th>Interval</th>
                       <th>Diagnostic</th>
+                      <th>Medic</th>
                       <th></th>
                   </tr>
                   @foreach($concedii->all() as $concediu)
@@ -139,7 +140,7 @@
                            => nr. de zile: {{$concediu->duration}} 
                         </td>
                         <td>{{$concediu->diagnostic}}</td>
-                       
+                       <td> {{$concediu->medicuser}}</td>
                         <td>
                         <a href="{{ route('concedii.edit', ['id' => $concediu->id]) }}" class="delete-modal btn btn-xs btn-warning">
                             <span class="glyphicon glyphicon-trash"></span> Editeaza

@@ -21,6 +21,12 @@
                         </div>
                         <br>
                         <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user-md"></i></span>
+                            <input type="text" class="form-control" placeholder="Cautare dupa Nume medic - alegeti din lista" id="medic_name" name="medic_name">
+                            <input type="hidden" class="form-control" id="medic" name="medic">
+                        </div>
+                        <br/>
+                        <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-medkit"></i></span>
                             <input name="simpthoms" type="text" class="form-control" placeholder="Simptome">
                         </div>
@@ -66,6 +72,18 @@
               $('#pacient_id').val(ui.item.id);
           }
       });
+
+      $('#medic_name').autocomplete({
+        source:'{!!URL::route('doctorslist')!!}',
+          minlength:1,
+          autoFocus:true,
+          select:function(e,ui)
+          {
+              $('#medic_name').val(ui.item.value);
+              $('#medic').val(ui.item.id);
+          }
+      });
+
 
  $(document).ready(function() {
    

@@ -9,8 +9,8 @@
         <div class="box-body">
             <div class="row form-group">
                 <div class="col-lg-12">
-                    <a href="{{ route('program.add') }}" class="edit-modal btn btn-info">
-                        <span class="glyphicon glyphicon-plus"></span> Introduce programare
+                    <a href="{{ route('users.add') }}" class="btn btn-sm btn-success">
+                        <span class="glyphicon glyphicon-plus"></span> Introduce utilizator nou
                     </a>
                 </div>
             </div>

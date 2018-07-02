@@ -180,4 +180,42 @@ class UserController extends Controller
  
         return redirect()->route('users');
     }
+
+
+    public function autocomplete(Request $request)
+    {
+        $term = $request->term;
+    
+        $queries = DB::table('users') //Your table name
+            ->where('name', 'like', '%'.$term.'%') //Your selected row
+            ->take(5)->get();
+    
+        foreach ($queries as $query)
+        {
+            $results[] = ['id' => $query->id, 'value' => $query->name ]; //you can take custom values as you want
+        }
+        if(!isset($results))
+        {
+            $results[] = ['id' => 0, 'value' => "NA" ];
+        }
+        return response()->json($results);
+    }
+
+    public function autousername(Request $request, $medicid)
+    {
+        #$term = $request->term;
+    
+        $medic = User::findOrFail($medicid);
+        $results[] = ['id' => $medic->id, 'value' => $medic->name]; //you can take custom values as you want
+
+        /*foreach ($pacient as $query)
+        {
+            $results[] = ['id' => $query->id, 'value' => $query->firstname ." ". $query->lastname ." (". $query->cnp.")" ]; //you can take custom values as you want
+        }*/
+        if(!isset($results))
+        {
+            $results[] = ['id' => 0, 'value' => "NA" ];
+        }
+        return response()->json($results);
+    }
 }

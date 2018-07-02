@@ -18,15 +18,15 @@
       </div>
 
       <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
+      <!--form action="#" method="get" class="sidebar-form">
         <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <input type="text" name="q" class="form-control" placeholder="Cauta pacient...">
           <span class="input-group-btn">
               <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
               </button>
             </span>
         </div>
-      </form>
+      </form-->
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
@@ -42,7 +42,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route('pacients.add') }}"><i class="fa fa-plus-square"></i> Pacient nou</a></li>
-            <li><a href="{{ route('pacients') }}"><i class="fa fa-paper-plane-o"></i> Lista pacienti</a></li>
+            <li><a href="{{ route('pacients') }}"><i class="fa fa-users"></i> Lista pacienti</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -53,7 +53,7 @@
               </a>
           <ul class="treeview-menu">
             <li><a href="{{ route('program.add') }}"><i class="fa fa-plus-square"></i> Intoducere programare</a></li>
-            <li><a href="{{ route('program') }}"><i class="fa fa-paper-plane-o"></i> Lista programari</a></li>
+            <li><a href="{{ route('program') }}"><i class="fa fa-calendar"></i> Lista programari</a></li>
           </ul>
           </li>
         <li class="treeview">
@@ -65,7 +65,7 @@
 
           <ul class="treeview-menu">
             <li><a href="{{ route('consults.add') }}"><i class="fa fa-plus-square"></i> Introduce consultatie</a></li>
-            <li><a href="{{ route('consults') }}"><i class="fa fa-paper-plane-o"></i> Lista consultatii</a></li>
+            <li><a href="{{ route('consults') }}"><i class="fa fa-stethoscope"></i> Lista consultatii</a></li>
           </ul>
 
         </li>
@@ -78,7 +78,7 @@
 
           <ul class="treeview-menu">
             <li><a href="{{ route('concedii.add') }}"><i class="fa fa-plus-square"></i> Introduce concediu</a></li>
-            <li><a href="{{ route('concedii') }}"><i class="fa fa-paper-plane-o"></i> Lista concediu</a></li>
+            <li><a href="{{ route('concedii') }}"><i class="fa fa-pause"></i> Lista concediu</a></li>
           </ul>
 
         </li>
@@ -90,9 +90,8 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('users') }}"> <i class="fa fa-facebook-square"></i> Lista utilizatori</a></li>
-            <li><a href="{{ route('users.add') }}"> <i class="fa fa-google-plus-square"></i> Adaugare utilizator</a></li>
-            
+            <li><a href="{{ route('users.add') }}"> <i class="fa fa-plus-square"></i> Adaugare utilizator</a></li>
+            <li><a href="{{ route('users') }}"> <i class="fa fa-user-md"></i> Lista utilizatori</a></li>
           </ul>
         </li>
 
@@ -103,13 +102,13 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"> <i class="fa fa-ambulance"></i> Conceddii medicale</a></li>
-            <li><a href="#"> <i class="fa fa-heartbeat"></i> Boli frecvente</a></li>
-            <li><a href="#"> <i class="fa fa-users"></i> Pacienti </a></li>
+            <li><a href="{{ route('raports.concedii')}}"> <i class="fa fa-ambulance"></i> Conceddii medicale</a></li>
+            <li><a href="{{ route('raports.boli')}}"> <i class="fa fa-heartbeat"></i> Boli frecvente</a></li>
+            <!--li><a href="{{ route('raports.pacienti')}}"> <i class="fa fa-users"></i> Pacienti </a></li-->
           </ul>
         </li>
         <li>
-          <a href="{{ url('/logout') }}"> logout </a>
+          <a href="{{route('logout')}}"><i class="fa fa-sign-out"></i> Iesire</a>
         </li>
       </ul>
       <!-- /.sidebar-menu -->

@@ -9,7 +9,7 @@
         <div class="box-body">
             <div class="row form-group">
                 <div class="col-lg-12">
-                <a href="{{ route('pacients.add') }}" class="edit-modal btn btn-sm btn-success">
+                <a href="{{ route('pacients.add') }}" class="btn btn-sm btn-success">
                     <span class="fa fa-user-plus"></span> Creaza pacient
                 </a>
                 </div>
@@ -26,7 +26,7 @@
                             <th class="text-center">CNP</th>
                             <th class="text-center">Adresa</th>
                             <th class="text-center">Telefon</th>
-                            <th class="text-center">ala</th>
+                            <th class="text-center"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,14 +41,14 @@
                             <td>{{$pacient->phone}}</td>
                             <td>
                             <a href="{{ route('pacients.show', ['id' => $pacient->id]) }}" 
-                            class="btn  btn-sm btn-success">
+                            class="btn btn-xs btn-success">
                         <span class="glyphicon glyphicon-edit"></span> Vizualizare
                     </a>
-                    <a href="{{ route('pacients.edit', ['id' => $pacient->id]) }}" class="btn  btn-sm btn-info"
+                    <a href="{{ route('pacients.edit', ['id' => $pacient->id]) }}" class="btn btn-xs btn-info"
                         data-info="{{$pacient->id}}">
                         <span class="glyphicon glyphicon-edit"></span> Editare
                     </a>
-                    <a onclick="return confirm('Sigur vreti sa stergeti pacientul?')" href="{{ route('pacients.destroy', ['id' => $pacient->id]) }}" class="btn  btn-sm btn-danger"
+                    <a onclick="return confirm('Sigur vreti sa stergeti pacientul?')" href="{{ route('pacients.destroy', ['id' => $pacient->id]) }}" class="btn btn-xs btn-danger"
                         data-info="{{$pacient->id}}">
                         <span class="glyphicon glyphicon-trash"></span> Sterge
                     </a>

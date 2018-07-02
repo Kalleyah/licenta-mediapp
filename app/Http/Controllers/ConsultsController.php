@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Consults;
 use App\Pacient;
+use App\User;
 use App\Concediimedicale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,8 @@ class ConsultsController extends Controller
         //$consults = Consults::orderBy('created_at', 'desc')->paginate($itemsPerPage);
         $consults = DB::table('consults')
             ->leftJoin('pacients', 'consults.pacient_id', '=', 'pacients.id')
-            ->select('consults.*', 'pacients.firstname', 'pacients.lastname', 'pacients.cnp')
+            ->leftJoin('users', 'consults.medic', '=', 'users.id')
+            ->select('consults.*', 'pacients.firstname', 'pacients.lastname', 'pacients.cnp', 'users.name')
             ->orderBy('consults.created_at', 'desc')
             ->paginate(20);
         return view('consults.index', array('consults' => $consults, 'page_title' => 'Lista consultatii'));
@@ -48,7 +50,7 @@ class ConsultsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, array(
-            'pacient' => 'required',
+            //'pacient_id' => 'required',
             //'diagnostics' => 'required'
             )
         );
@@ -57,7 +59,6 @@ class ConsultsController extends Controller
         $cid = Consults::create($input)->id;
 
         Session::flash('flash_message', 'Consultatie adaugata!');
-        //http://127.0.0.1:8085/consults/7
         return redirect()->route('consults.show' , ['id' => $cid]);
     }
 
@@ -70,6 +71,7 @@ class ConsultsController extends Controller
     public function show($cid)
     {
         $consults = Consults::where('id', $cid)->first();
+        $medic = User::where('id', $consults->medic)->first();
         $pacient = Pacient::where('id', $consults->pacient_id)->first();
         $concedii = Concediimedicale::where('consultid', $cid)->first();
 
@@ -77,6 +79,7 @@ class ConsultsController extends Controller
         array(
             'consults' => $consults, 
             'pacient' => $pacient,
+            'medic' => $medic,
             'concedii' => $concedii,
         'page_title' => 'Detalii consultatie'));
     }
@@ -105,7 +108,7 @@ class ConsultsController extends Controller
         $consults = Consults::findOrFail($consults);
  
         $this->validate($request, array(
-            'pacientid' => 'required',
+            'pacient_id' => 'required',
             'diagnostics' => 'required'
                             )
                         );

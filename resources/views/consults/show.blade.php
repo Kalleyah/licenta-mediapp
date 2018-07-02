@@ -9,6 +9,12 @@
         <div class="box box-success">
             <div class="box-header with-border">
                 <h3 class="box-title">{{$consults->consultdate}} : {{$consults->diagnostics}} ({{$consults->codboala}})</h3>
+                <h4>Medic: @if ($medic)
+                                {{$medic->name}}
+                            @else
+                                -
+                            @endif
+                 </h4>
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>

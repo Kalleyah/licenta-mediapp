@@ -16,13 +16,18 @@
                 <div class="box-body">
                         
                         <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
-                       
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-plus"></i></span>
                             <input type="text" class="form-control" placeholder="Cautare dup Cnp sau Nume pacient - alegeti din lista" id="pacient" name="pacient">
-                            <input type="hidden" class="form-control" id="pacient_id" name="pacient_id">
+                            <input type="hidden" class="form-control" id="pacient_id" name="pacient_id"  value="{{$consults->pacient_id}}">
                         </div>
                         <br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user-md"></i></span>
+                            <input type="text" class="form-control" placeholder="Cautare dupa Nume medic - alegeti din lista" id="medic_name" name="medic_name">
+                            <input type="hidden" class="form-control" id="medic" name="medic"  value="{{$consults->medic}}">
+                        </div>
+                        <br/>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-medkit"></i></span>
                             <input name="simpthoms" type="text" class="form-control" placeholder="Simptome" value="{{$consults->simpthoms}}">
@@ -57,4 +62,70 @@
         </div>
     </div>
 </section>
+
+<script type="text/javascript">
+      $('#pacient').autocomplete({
+        source:'{!!URL::route('autocomplete')!!}',
+          minlength:1,
+          autoFocus:true,
+          select:function(e,ui)
+          {
+              $('#pacient').val(ui.item.value);
+              $('#pacient_id').val(ui.item.id);
+          }
+      });
+
+      $('#medic_name').autocomplete({
+        source:'{!!URL::route('doctorslist')!!}',
+          minlength:1,
+          autoFocus:true,
+          select:function(e,ui)
+          {
+              $('#medic_name').val(ui.item.value);
+              $('#medic').val(ui.item.id);
+          }
+      });
+      $(document).ready(function() {
+   
+   if(window.location.href.indexOf("pacientid") > -1) {
+     //alert("your url contains the pacientid");
+      $.ajax(
+       {
+           type: "GET",
+           url: "{!!URL::route('autousername', ['pacientid' => app('request')->input('pacientid') ])!!}",
+           contentType: "application/json; charset=utf-8",
+           dataType: "json",
+           success: function(data){
+               //console.log(data[0].value);
+               $('#pacient').val(data[0].value);
+               $('#pacient').attr("disabled", "disabled"); 
+           },
+           error: function(data){
+               $('#pacient').removeAttr("disabled"); 
+           }
+       });
+
+   }
+   if(window.location.href.indexOf("medic") > -1) {
+     //alert("your url contains the pacientid");
+      $.ajax(
+       {
+           type: "GET",
+           url: "{!!URL::route('autodoctorname', ['medicid' => app('request')->input('medic') ])!!}",
+           contentType: "application/json; charset=utf-8",
+           dataType: "json",
+           success: function(data){
+               //console.log(data[0].value);
+               $('#medic_name').val(data[0].value);
+               $('#medic_name').attr("disabled", "disabled"); 
+           },
+           error: function(data){
+               $('#medic_name').removeAttr("disabled"); 
+           }
+       });
+
+   }
+
+   });
+</script>
 @endsection
